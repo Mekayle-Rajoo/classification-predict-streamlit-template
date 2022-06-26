@@ -49,9 +49,9 @@ def main():
 	options = ["Prediction", "Information"]
 	selection = st.sidebar.selectbox("Choose Option", options)
     
-    model_selection = st.selectbox("Select a model:", ["Linear Support Vector Classifier"])
+	model_selection = st.selectbox("Select a model:", ["Linear Support Vector Classifier"])
 
-	# Building out the "Information" page
+	# Building out the "Information" page 
 	if selection == "Information":
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
