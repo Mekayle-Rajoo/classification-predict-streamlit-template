@@ -41,17 +41,15 @@ def main():
 
 	# Creates a main title and subheader on your page -
 	# these are static across all pages
-	st.title("Tweet Classifer")
+	st.title("CW1 Tweet Classifer")
 	st.subheader("Climate change tweet classification")
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 	options = ["Prediction", "Information"]
 	selection = st.sidebar.selectbox("Choose Option", options)
-    
-	model_selection = st.selectbox("Select a model:", ["Linear Support Vector Classifier"])
 
-	# Building out the "Information" page 
+	# Building out the "Information" page
 	if selection == "Information":
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
