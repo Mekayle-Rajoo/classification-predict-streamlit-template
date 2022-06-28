@@ -28,6 +28,7 @@ import joblib,os
 # Data dependencies
 import pandas as pd
 import matplotlib.pyplot as plt
+from PIL import Image
 
 # Vectorizer
 news_vectorizer = open("resources/Vectorizer.pkl","rb")
@@ -76,7 +77,8 @@ def main():
 
 	# Creates a main title and subheader on your page -
 	# these are static across all pages
-	st.title("CW1 Tweet Classifer 📊")
+	image = Image.open("resources/Logo.png")
+	st.image(image)
 	st.subheader("Climate change tweet classification 🌍")
 
 	# Creating sidebar with selection box -
@@ -87,13 +89,25 @@ def main():
 	# Building out the "Information" page
 	if selection == "Meet the team":
 		st.markdown("Our Team:")
-		st.text("Supervisor: Claudia Elliot-Wilson")       
-		st.text("Bethuel Masango")
-		st.text("Kanego Kgabalo Makhuloane")
-		st.text("Madute Ledwaba")
-		st.text("Mekayle Rajoo")
-		st.text("Mosuwe Mosibi")
-		st.text("Thabang Rodney Mabelane")
+		st.text("Supervisor: Claudia Elliot-Wilson")
+        
+		image = Image.open("resources/Mr Easy.jpg")
+		st.image(image, caption='Bethuel Masango', width=182)
+        
+		image = Image.open("resources/Kanego.jpg")
+		st.image(image, caption='Kanego Kgabalo Makhuloane', width=182)
+        
+		image = Image.open("resources/Madute.jfif")
+		st.image(image, caption='Madute Ledwaba', width=182)
+        
+		image = Image.open("resources/mekayle_rajoo.jfif")
+		st.image(image, caption='Mekayle Rajoo')
+        
+		image = Image.open("resources/moose.jfif")
+		st.image(image, caption='Mosuwe Mosibi', width=182)
+        
+		image = Image.open("resources/Rodney.jpg")
+		st.image(image, caption='Thabang Rodney Mabelane', width=182)
     
     
     
@@ -119,10 +133,21 @@ def main():
 		st.subheader("Raw Twitter data used:")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
 			st.write(raw[['sentiment', 'message']]) # will write the df to the page
+            
 			fig1, ax1 = plt.subplots()
+			st.subheader("Distribution of Data between our classes:")            
 			ax1.pie([8530, 3640, 2353, 1296], explode=(0, 0.1, 0, 0), labels=['Pro', 'News','Neutral',"Anti"],autopct='%1.1f%%',shadow=True, startangle=90)
 			ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 			st.pyplot(fig1)
+            
+			st.subheader("The most common words in each class:")
+			image = Image.open("resources/wordcloud_most.png")
+			st.image(image, caption='WordCloud of the most common words in each class', width=700)
+            
+			st.subheader("The least common words in each class:")
+			image = Image.open("resources/wordcloud_least.png")
+			st.image(image, caption='WordCloud of the least common words in each class', width=700)            
+            
             
 	# Building out the predication page
 	if selection == "Prediction":
