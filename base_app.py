@@ -103,7 +103,7 @@ def main():
 		image = Image.open("resources/mekayle_rajoo.jfif")
 		st.image(image, caption='Mekayle Rajoo')
         
-		image = Image.open("resources/moose.jfif")
+		image = Image.open("resources/Moose.jfif")
 		st.image(image, caption='Mosuwe Mosibi', width=182)
         
 		image = Image.open("resources/Rodney.jpg")
