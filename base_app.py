@@ -101,10 +101,8 @@ def main():
 		st.image(image, caption='Madute Ledwaba', width=182)
         
 		image = Image.open("resources/mekayle_rajoo.jfif")
-		st.image(image, caption='Mekayle Rajoo')
-        
-		image = Image.open("resources/Moose.jfif")
-		st.image(image, caption='Mosuwe Mosibi', width=182)
+		st.image(image, caption='Mekayle Rajoo', width=182)
+    
         
 		image = Image.open("resources/Rodney.jpg")
 		st.image(image, caption='Thabang Rodney Mabelane', width=182)
