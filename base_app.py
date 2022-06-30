@@ -102,6 +102,9 @@ def main():
         
 		image = Image.open("resources/mekayle_rajoo.jfif")
 		st.image(image, caption='Mekayle Rajoo', width=182)
+        
+		image = Image.open("resources/moose.jfif")
+		st.image(image, caption='Mosuwe Mosibi', width=182)
     
         
 		image = Image.open("resources/Rodney.jpg")
@@ -162,32 +165,35 @@ def main():
 		st.info("Prediction with ML Models")
 		model_option = st.selectbox('Please select a Classification Model:', ["Logistic Regression", "Linear Support Vector                 		Classifier","Multinomial Naive Bayes Classifier", "AdaBoostClassifier" ])
     
-        
+		st.info("We suggest using the Linear Support Vector Classifier as this produced the best accuracy")        
         
 		# Creating a text box for user input
 		tweet_text = st.text_area("Enter Text","Type a Tweet Here")
         
 		if st.button("Classify"):
+			if tweet_text == "Type a Tweet Here" or tweet_text =="":
+				st.success("Please enter a tweet to classify")
+			else:
 			# Transforming user input with vectorizer
-			tweet_text = clean_text(tweet_text)             
-			vect_text = tweet_cv.transform([tweet_text]).toarray()
-			# Load your .pkl file with the model of your choice + make predictions
-			# Try loading in multiple models to give the user a choice
-			if model_option == "Linear Support Vector                 		Classifier":  
-						predictor = joblib.load(open(os.path.join("resources/LSVC_model.pkl"),"rb"))
-						prediction = predictor.predict(vect_text)
+				tweet_text = clean_text(tweet_text)
+				vect_text = tweet_cv.transform([tweet_text]).toarray()
+				# Load your .pkl file with the model of your choice + make predictions
+				# Try loading in multiple models to give the user a choice
+				if model_option == "Linear Support Vector                 		Classifier":                
+							predictor = joblib.load(open(os.path.join("resources/LSVC_model.pkl"),"rb"))
+							prediction = predictor.predict(vect_text)
                         
-			if model_option == "Logistic Regression":
-						predictor = joblib.load(open(os.path.join("resources/LG_model.pkl"),"rb"))
-						prediction = predictor.predict(vect_text)
+				if model_option == "Logistic Regression":
+							predictor = joblib.load(open(os.path.join("resources/LG_model.pkl"),"rb"))
+							prediction = predictor.predict(vect_text)
                         
-			if model_option == "Multinomial Naive Bayes Classifier":
-						predictor = joblib.load(open(os.path.join("resources/MNBC_model.pkl"),"rb"))
-						prediction = predictor.predict(vect_text) 
+				if model_option == "Multinomial Naive Bayes Classifier":
+							predictor = joblib.load(open(os.path.join("resources/MNBC_model.pkl"),"rb"))
+							prediction = predictor.predict(vect_text) 
                         
-			if model_option == "AdaBoostClassifier":
-						predictor = joblib.load(open(os.path.join("resources/ABC_model.pkl"),"rb"))
-						prediction = predictor.predict(vect_text) 
+				if model_option == "AdaBoostClassifier":
+							predictor = joblib.load(open(os.path.join("resources/ABC_model.pkl"),"rb"))
+							prediction = predictor.predict(vect_text) 
                         
                         
                         
@@ -195,14 +201,15 @@ def main():
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
-			if prediction == 1:
-				st.success("This tweet supports the belief of man-made climate change")
-			if prediction == -1:
-				st.success("This tweet does not believe in man-made climate change")
-			if prediction == 0:
-				st.success("This tweet neither supports nor refutes the belief of man-made climate change")
-			if prediction == 2:
-				st.success("This tweet links to factual news about climate change")
+			if tweet_text != "Type a Tweet Here" and tweet_text != "":
+				if prediction == 1:
+					st.success("This tweet supports the belief of man-made climate change")
+				if prediction == -1:
+					st.success("This tweet does not believe in man-made climate change")
+				if prediction == 0:
+					st.success("This tweet neither supports nor refutes the belief of man-made climate change")
+				if prediction == 2:
+					st.success("This tweet links to factual news about climate change")
                 
 
 
